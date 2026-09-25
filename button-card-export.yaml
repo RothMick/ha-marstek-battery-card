@@ -1,0 +1,142 @@
+type: custom:button-card
+name: Battery 1
+variables:
+  title: Battery 1
+  e_soc: sensor.hame_energy_hmj_2_aabbccddeeff_host_battery_soc
+  e_input: sensor.hame_energy_hmj_2_aabbccddeeff_total_input_power
+  e_output: sensor.hame_energy_hmj_2_aabbccddeeff_total_output_power
+  e_temp: sensor.hame_energy_hmj_2_aabbccddeeff_temperature_max
+  e_weight: number.astrameter_consumer_hmj_2_aabbccddeeff_distribution_weight
+  e_switch: switch.astrameter_consumer_hmj_2_aabbccddeeff_active
+entity: sensor.hame_energy_hmj_2_aabbccddeeff_host_battery_soc
+show_name: false
+show_icon: false
+show_state: false
+show_label: false
+tap_action:
+  action: none
+extra_styles: >-
+  @keyframes b2pulse { 0%,100% { opacity:0.25; } 50% { opacity:1; } }
+  ha-ripple,mwc-ripple,#ripple{display:none !important;}
+triggers_update:
+  - sensor.hame_energy_hmj_2_aabbccddeeff_total_input_power
+  - sensor.hame_energy_hmj_2_aabbccddeeff_total_output_power
+  - sensor.hame_energy_hmj_2_aabbccddeeff_host_battery_soc
+  - number.astrameter_consumer_hmj_2_aabbccddeeff_distribution_weight
+  - switch.astrameter_consumer_hmj_2_aabbccddeeff_active
+  - sensor.hame_energy_hmj_2_aabbccddeeff_temperature_max
+custom_fields:
+  pic: >-
+    [[[ const g=(id)=>states[id]?states[id].state:''; const
+    soc=Number(g(variables.e_soc)); const alive=soc>0; const sc='#65D173'; const
+    k='#555'; const fh=209*Math.min(Math.max(soc,0),100)/100; const fy=433-fh;
+    const an=alive?'animation:b2pulse 3s ease-in-out infinite;':''; const
+    fr=alive?`<rect x='317' y='${fy}' width='30' height='${fh}' fill='${sc}'
+    clip-path='url(#sclip)' style='${an}'/>`:''; return `<svg viewBox='0 0 960
+    960' width='68' height='68' fill='none'
+    xmlns='http://www.w3.org/2000/svg'><path d='M463.821 33c31.065 0 60.98
+    34.899 60.98 70.568L524.8 847c0 53.691-41.036 73.634-65.581 72.485'
+    stroke='${k}' stroke-width='20'/><path d='M701.561 41C732.351 41 762 72.41
+    762 104.512V790.72c0 48.323-40.673 66.272-65 65.238' stroke='${k}'
+    stroke-width='10'/><path d='M446.201 71c-25.368
+    0-214.924.994-239.312.994-24.388 0-32.178 26.302-31.881 42.083.298 15.781
+    2.677 662.521 2.677 702.626 0 40.105 23.248 47.135 46.396 49.033l211.363
+    13.069c20.045 1.037 53.556-.468 53.556-46.141V113.356C489 81.16 471.569 71
+    446.201 71Z' stroke='${k}' stroke-width='20'/><ellipse cx='789.809'
+    cy='569.104' rx='11.889' ry='26.463' fill='${k}'/><path d='M207 114a5 5 0 0
+    1 5 5v711a5 5 0 0 1-10 0V119a5 5 0 0 1 5-5Zm25-2a5 5 0 0 1 5 5v713a5 5 0 0
+    1-10 0V117a5 5 0 0 1 5-5Zm25 0a5 5 0 0 1 5 5v713a5 5 0 0 1-10 0V117a5 5 0 0
+    1 5-5Zm30 573.834V830a5 5 0 0 1-10 0V685.235l10 .599Zm25 1.496V830a5 5 0 0
+    1-10 0V686.731l10 .599Zm25 1.496V830a5 5 0 0 1-10 0V688.228l10 .598Zm25
+    1.496V830a5 5 0 0 1-10 0V689.724l10 .598Zm25 1.496V830a5 5 0 0 1-10
+    0V691.221l10 .597ZM407 108a5 5 0 0 1 5 5v717a5 5 0 0 1-10 0V113a5 5 0 0 1
+    5-5Zm25 0a5 5 0 0 1 5 5v717a5 5 0 0 1-10 0V113a5 5 0 0 1 5-5Zm25-1a5 5 0 0 1
+    5 5v718a5 5 0 0 1-10 0V112a5 5 0 0 1 5-5Zm-75 3a5 5 0 0 1 5
+    5v526.432l-10-.599V115a5 5 0 0 1 5-5Zm-25 1a5 5 0 0 1 5
+    5v523.936l-10-.599V116a5 5 0 0 1 5-5Zm-25 342a5 5 0 0 1 5
+    5v180.439l-10-.598V458a5 5 0 0 1 5-5Zm-25-346a5 5 0 0 1 5
+    5v524.943l-10-.598V112a5 5 0 0 1 5-5Zm-25 2a5 5 0 0 1 5
+    5v521.447l-10-.598V114a5 5 0 0 1 5-5Z' fill='${k}'/><path d='m175 104
+    313-2v20l-313 2v-20Z' fill='${k}'/><path d='M449.247 928.327v7.804l15.724
+    2.301h11.889l10.355-2.301v-7.804l-4.602.519h-23.395c-2.039-.096-5.439-.273-9.971-.519-32.295-1.755-122.083-6.995-186.774-10.867m0
+    0c-14.646-.877-28.005-1.684-39.119-2.364-15.833-.969-35.4-2.802-39.354-3.096-20.71-1.535-51.541-23.809-51.541-70.597s-3.451-718.029-3.451-752.466c0-34.436
+    30.992-63.664 65.94-63.664 34.949 0 237.808-1.918 268.873-1.918 0 0 256.574
+    2.684 301.062 3.834 44.489 1.15 67.116 44.488 67.116 71.718 0 27.23-1.534
+    646.998-1.534 680.365 0 33.366-22.628 60.212-49.09 67.499-26.463
+    7.287-92.045 25.286-92.045 25.286l-22.628 6.216-184.089
+    50.573m-259.259-13.75v9.845l6.519 1.534h10.355l16.875-.767 5.37-.767v-7.481'
+    stroke='${k}' stroke-width='40'/><path d='m180 814 303 19v20l-303-19v-20Z'
+    fill='${k}'/><clipPath id='sclip'><rect x='317' y='224' width='30'
+    height='209' rx='8'/></clipPath><rect x='317' y='224' width='30'
+    height='209' rx='8' fill='${k}'/>${fr}</svg>`; ]]]
+  body: >-
+    [[[ const v=variables; const s='var(--secondary-text-color)'; const
+    d='var(--primary-text-color)'; const grey='#9e9e9e'; const
+    g=(id)=>states[id]?states[id].state:'–'; const soc=Number(g(v.e_soc)); const
+    on=states[v.e_switch]&&states[v.e_switch].state==='on'; const
+    alive=on&&soc>0; const r=(ic,val,c1,c2,eid)=>`<div
+    ontouchend='event.preventDefault();event.stopPropagation();document.querySelector(&#39;home-assistant&#39;).dispatchEvent(new
+    CustomEvent(&#39;hass-more-info&#39;,{detail:{entityId:&#39;${eid}&#39;}}))'
+    onclick='event.stopPropagation();document.querySelector(&#39;home-assistant&#39;).dispatchEvent(new
+    CustomEvent(&#39;hass-more-info&#39;,{detail:{entityId:&#39;${eid}&#39;}}))'
+    style='display:flex;align-items:center;gap:3px;cursor:pointer;'><ha-icon
+    icon='${ic}' style='--mdc-icon-size:16px;color:${c1};'></ha-icon><span
+    style='font-size:0.82em;font-weight:600;color:${c2};'>${val}</span></div>`;
+    const lvl=Math.round(soc/10)*10; const
+    bic=isNaN(soc)?'mdi:battery-unknown':(soc<10?'mdi:battery-outline':(lvl>=100?'mdi:battery':`mdi:battery-${lvl}`));
+    const sc=soc<20?'#EA3424':(soc<80?'#F4BA40':'#65D173'); const
+    ic=alive?s:grey; const vc=alive?d:grey; const scC=alive?sc:grey; const
+    title=`<div
+    style='font-weight:700;font-size:1.05em;color:var(--primary-text-color);white-space:nowrap;'>${v.title}</div>`;
+    const vals=`<div style='display:flex;flex-wrap:wrap;gap:4px
+    14px;'>${r('mdi:solar-power',g(v.e_input)+'
+    W',ic,vc,v.e_input)}${r('mdi:transmission-tower',g(v.e_output)+'
+    W',ic,vc,v.e_output)}${r('mdi:thermometer',g(v.e_temp)+'
+    °C',ic,vc,v.e_temp)}${r('mdi:scale-balance',g(v.e_weight),ic,vc,v.e_weight)}${r(bic,g(v.e_soc)+'
+    %',scC,scC,v.e_soc)}</div>`; return `<div
+    style='display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:6px;'>${title}${vals}</div>`;
+    ]]]
+  badge: >-
+    [[[ const so=states[variables.e_soc]; const wt=states[variables.e_weight];
+    const ok=(e)=>e && e.state!=='unavailable' && e.state!=='unknown'; const
+    online=ok(so)&&ok(wt); return online?`<span style='padding:1px
+    9px;border-radius:11px;background:#12361f;color:#22c55e;font-size:0.82em;font-weight:600;line-height:1.5;'>Online</span>`:'';
+    ]]]
+styles:
+  card:
+    - padding: 10px 14px 14px 14px
+    - cursor: default
+    - pointer-events: auto
+    - position: relative
+  grid:
+    - grid-template-areas: "'pic body'"
+    - grid-template-columns: min-content 1fr
+    - align-items: start
+  name:
+    - justify-self: start
+    - align-self: start
+    - font-weight: "700"
+    - font-size: 1.05em
+    - white-space: nowrap
+    - color: var(--primary-text-color)
+    - margin-left: 10px
+  custom_fields:
+    pic:
+      - grid-area: pic
+      - align-self: center
+      - padding-right: 8px
+    body:
+      - grid-area: body
+      - align-self: start
+      - justify-self: start
+      - margin-left: 10px
+    badge:
+      - position: absolute
+      - top: 6px
+      - right: 10px
+      - pointer-events: none
+      - z-index: "3"
+hold_action:
+  action: none
+double_tap_action:
+  action: none

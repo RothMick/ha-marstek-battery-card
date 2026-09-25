@@ -1,0 +1,8 @@
+type: custom:ha-marstek-battery-card
+entity: sensor.hame_energy_hmj_2_aabbccddeeff_host_battery_soc
+name: Battery 1
+show_input: true
+show_output: true
+show_soc: true
+show_weight: true
+show_temperature: true
