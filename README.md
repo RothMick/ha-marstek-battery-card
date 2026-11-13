@@ -4,6 +4,13 @@ Lovelace custom card for Marstek batteries, built for the B2500 HMJ-2 (icons als
 
 A single JS file, **no dependencies** — no `button-card`, no `card-mod`.
 
+| Light | Dark |
+|---|---|
+| ![B2500, light theme](images/b2500-light.png) | ![B2500, dark theme](images/b2500-dark.png) |
+| ![Venus E, light theme](images/venus-light.png) | ![Venus E, dark theme](images/venus-dark.png) |
+
+*Top: B2500 (entities derived from the hm2mqtt naming scheme). Bottom: Venus E (`model: venus_e`, entities set individually). Screenshots use invented values.*
+
 This repo contains two files:
 
 1. **`ha-marstek-battery-card.js`** — the card, including a visual editor.
